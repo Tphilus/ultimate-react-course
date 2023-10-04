@@ -1,5 +1,5 @@
-import React from 'react';
-import './index.css';
+import React from "react";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -46,7 +46,6 @@ const pizzaData = [
   },
 ];
 
-
 function App() {
   return (
     <div className="container">
@@ -60,41 +59,67 @@ function App() {
 const Header = () => {
   // const style = {color:"red", fontSize: "48px", textTransform: "uppercase" };
   const style = {};
-  return <header className='header'>
-    <h1 style={style}>Fast React Oizza Co.</h1>
-  </header>
-}
+  return (
+    <header className="header">
+      <h1 style={style}>Fast React Oizza Co.</h1>
+    </header>
+  );
+};
 
 const Menu = () => {
-  return <main className='menu'>
-    <h2>Our menu</h2>
-    <Pizza name='Pizza Spinaci' ingredients='Tomato, mozarella, spinach, and ricotta cheese' photoName='pizzas/spinaci.jpg' price={10} />
-    <Pizza name='Pizza Funghi ' ingredients='Tomato, mushrooms' photoName='pizzas/funghi.jpg' price={12} />
-  </main>
-}
+  const pizzas = pizzaData;
+  const numPizzas = pizzas.length;
+
+  return (
+    <main className="menu">
+      <h2>Our menu</h2>
+
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {pizzas?.map((pizza) => (
+            <Pizza key={pizza.name} pizzaObj={pizza} />
+          ))}
+        </ul>
+      )}
+
+      {/* <Pizza name='Pizza Spinaci' ingredients='Tomato, mozarella, spinach, and ricotta cheese' photoName='pizzas/spinaci.jpg' price={10} />
+    <Pizza name='Pizza Funghi ' ingredients='Tomato, mushrooms' photoName='pizzas/funghi.jpg' price={12} /> */}
+    </main>
+  );
+};
 
 const Pizza = (props) => {
-  return <div className='pizza'>
-    <img src={props.photoName} alt={props.name} />
-    <div>
-      <h3> {props.name} </h3>
-      <p>{ props.ingredients }</p>
-      <span>{props.price + 3}</span>
-    </div>
-  </div>
-}
+  return (
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h3> {props.pizzaObj.name} </h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
+      </div>
+    </li>
+  );
+};
 
 const Footer = () => {
-  const hour = new Date().getHours;
-  const openHour = 8;
+  const hour = new Date().getHours();
+  const openHour = 12;
   const closeHour = 22;
-  const isHour = hour >= openHour && hour <= closeHour;
-  console.log(isHour);
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
 
   // if(hour >= openHour && hour <= closeHour) alert("We´re currently open!"); else alert("Sorry we´re close")
-  return <footer className='footer'>{new Date().toLocaleTimeString()}.We'r currently open</footer>
-}
+  return (
+    <footer className="footer">
+      {/* {new Date().toLocaleTimeString()}.We'r currently open */}
+      {isOpen && (
+        <div className="order">
+          <p>We'r open untile {closeHour}:00. Come visit us or order online</p>
+          <button className="btn">Order</button>
+        </div>
+      )}
+    </footer>
+  );
+};
 
 export default App;
-
-// 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
