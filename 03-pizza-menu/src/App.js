@@ -68,18 +68,21 @@ const Header = () => {
 
 const Menu = () => {
   const pizzas = pizzaData;
+  // const pizzas = [];
   const numPizzas = pizzas.length;
 
   return (
     <main className="menu">
       <h2>Our menu</h2>
 
-      {numPizzas > 0 && (
+      {numPizzas > 0 ? (
         <ul className="pizzas">
           {pizzas?.map((pizza) => (
             <Pizza key={pizza.name} pizzaObj={pizza} />
           ))}
         </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later :</p>
       )}
 
       {/* <Pizza name='Pizza Spinaci' ingredients='Tomato, mozarella, spinach, and ricotta cheese' photoName='pizzas/spinaci.jpg' price={10} />
@@ -89,6 +92,7 @@ const Menu = () => {
 };
 
 const Pizza = (props) => {
+  if (props.pizzaObj.soldOut) return null;
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -103,22 +107,38 @@ const Pizza = (props) => {
 
 const Footer = () => {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 1;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
 
+  // if (!isOpen) {
+  //   return <p>Closed</p>
+  // }
+
   // if(hour >= openHour && hour <= closeHour) alert("We´re currently open!"); else alert("Sorry we´re close")
   return (
     <footer className="footer">
-      {/* {new Date().toLocaleTimeString()}.We'r currently open */}
-      {isOpen && (
-        <div className="order">
-          <p>We'r open untile {closeHour}:00. Come visit us or order online</p>
-          <button className="btn">Order</button>
-        </div>
+      {isOpen ? (
+        <Order closeHour={closeHour} />
+      ) : (
+        <p>
+          We'r are happy to welcome you between {openHour}:00 and {closeHour}
+          :00.
+        </p>
       )}
     </footer>
+  );
+};
+
+const Order = (props) => {
+  return (
+    <div className="order">
+      <p>
+        We'r open untile {props.closeHour}:00. Come visit us or order online
+      </p>
+      <button className="btn">Order</button>
+    </div>
   );
 };
 
