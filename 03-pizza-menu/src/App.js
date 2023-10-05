@@ -128,7 +128,6 @@ const Footer = () => {
   //   return <p>Closed</p>
   // }
 
-  // if(hour >= openHour && hour <= closeHour) alert("We´re currently open!"); else alert("Sorry we´re close")
   return (
     <footer className="footer">
       {isOpen ? (
