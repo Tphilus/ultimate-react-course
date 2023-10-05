@@ -76,11 +76,18 @@ const Menu = () => {
       <h2>Our menu</h2>
 
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas?.map((pizza) => (
-            <Pizza key={pizza.name} pizzaObj={pizza} />
-          ))}
-        </ul>
+        <>
+          <p>
+            Authntic Italian cuisine. 6 creative dishes to choose from. All from
+            our stone oven, all organic, all delicious.{" "}
+          </p>
+
+          <ul className="pizzas">
+            {pizzas?.map((pizza) => (
+              <Pizza key={pizza.name} pizzaObj={pizza} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>We're still working on our menu. Please come back later :</p>
       )}
@@ -91,15 +98,20 @@ const Menu = () => {
   );
 };
 
-const Pizza = (props) => {
-  if (props.pizzaObj.soldOut) return null;
+const Pizza = ({ pizzaObj }) => {
+  // if (pizzaObj.soldOut) return null;
   return (
-    <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3> {props.pizzaObj.name} </h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <h3> {pizzaObj.name} </h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
+        {/* {pizzaObj.soldOut ? (
+          <span>SOLD OUT</span>
+        ) : (
+          <span>{pizzaObj.price}</span>
+        )} */}
       </div>
     </li>
   );
@@ -120,7 +132,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       {isOpen ? (
-        <Order closeHour={closeHour} />
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <p>
           We'r are happy to welcome you between {openHour}:00 and {closeHour}
@@ -131,11 +143,11 @@ const Footer = () => {
   );
 };
 
-const Order = (props) => {
+const Order = ({ closeHour, openHour }) => {
   return (
     <div className="order">
       <p>
-        We'r open untile {props.closeHour}:00. Come visit us or order online
+        We'r open {openHour}:00 to {closeHour}:00. Come visit us or order online
       </p>
       <button className="btn">Order</button>
     </div>
