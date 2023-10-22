@@ -184,3 +184,15 @@ summary;
 const pageRanges = pages > 1000 ? "Over a thousand" : "less than 1000";
 pageRanges;
 console.log(`The book has ${pageRanges} pages`);
+
+console.log(book.translations.spanish);
+
+const count = book.reviews.librarything.reviewsCount ?? "no data";
+count;
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything.reviewsCount;
+  return goodreads + librarything;
+}
+console.log(getTotalReviewCount(book));
