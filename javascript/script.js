@@ -238,3 +238,14 @@ longBooksWithMovie;
 const adventureBook = books
   ?.filter((books) => books.genres?.includes("adventure"))
   ?.map((book) => book.title);
+adventureBook;
+
+const pageAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+pageAllBooks;
+
+const arr = [3, 7, 1, 9, 6];
+const sorted = arr.slice().sort((a, b) => a - b);
+sorted;
+
+const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages);
+sortedByPages;
