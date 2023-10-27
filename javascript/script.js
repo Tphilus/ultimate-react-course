@@ -203,6 +203,7 @@ console.log(getTotalReviewCount(book));
 //                Arrays
 // ======================================
 
+/*
 function getTotalReviewCount(book) {
   const goodreads = book.reviews?.goodreads?.reviewsCount;
   const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
@@ -249,3 +250,41 @@ sorted;
 
 const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages);
 sortedByPages;
+
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secrets",
+  author: "K. K. Rowling",
+};
+
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+// 2 Delete book object from array
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+booksAfterDelete;
+
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 1210 } : book
+);
+booksAfterUpdate;
+*/
+
+// =========================
+//  Asynchronous Javascript
+// =========================
+
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
+// console.log("Theo");
+
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+
+  return data;
+}
+
+getTodos();
