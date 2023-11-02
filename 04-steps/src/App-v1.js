@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div>
       <Steps />
-      {/* <Steps /> */}
+      <Steps />
     </div>
   );
 }
@@ -45,31 +45,22 @@ function Steps() {
             {/* {text.name} */}
           </div>
           <div className="buttons">
-            <Button textColor="#7950f2" bgColor="#fff" onClick={handlePrevious}>
-              <span>👈</span>Previous
-            </Button>
-            <Button
-              textColor="#7950f2"
-              bgColor="#fff"
-              onClick={handleNext}
-              // text="Next"
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handlePrevious}
+              // onMouseEnter={() => alert("Yoo!!")}
             >
-              Next <span>👉</span>
-            </Button>
+              Previous
+            </button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handleNext}
+            >
+              Next
+            </button>
           </div>
         </div>
       )}
     </div>
-  );
-}
-
-function Button({ textColor, bgColor, onClick, children }) {
-  return (
-    <button
-      style={{ backgroundColor: textColor, color: bgColor }}
-      onClick={onClick}
-    >
-      {children}
-    </button>
   );
 }
