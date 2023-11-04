@@ -81,6 +81,7 @@ function Steps() {
   );
 }
 
+// step =>
 function StepMessage({ step, children }) {
   return (
     <div className="message">
@@ -89,6 +90,8 @@ function StepMessage({ step, children }) {
     </div>
   );
 }
+
+// function Step1() {}
 
 function Button({ textColor, bgColor, onClick, children }) {
   return (
