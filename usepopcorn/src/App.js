@@ -138,7 +138,7 @@ export default function App() {
 
       handleCloseMovie();
       fetchMovie();
-
+ 
       return function () {
         controller.abort();
       };
